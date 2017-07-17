@@ -1,0 +1,50 @@
+<div class="inner-container addition">
+<h1>Addition</h1>
+    <div *ngIf="!submitted"> 
+    <div class="item" *ngFor="let item of items">
+        <div *ngIf="item.number+1 == active">
+            <span class="item-number">{{item.number+1}}.)</span>   
+            <div class="problem">
+                <div class="carry clearfix">
+                    <span>&nbsp;</span>
+                    <span (click)="carry1()">{{carry_1}}</span>
+                    <span (click)="carry2()">{{carry_2}}</span>                 
+                </div>
+                <span class="topItem">{{item.addtop}}</span>
+                <span class="operator">+</span>
+                <span class="botItem">{{item.addbot}}</span>
+            </div>
+                
+        </div>
+    </div>
+    <div *ngIf="!readyToSubmit">
+    <input type="text" #answer class="math-answer" > 
+    <button class="next" (click)="nextItem(answer.value,active-1)" >
+        Next
+    </button>
+    </div>
+    <button class="next" (click)="submit()" *ngIf="readyToSubmit">
+        Submit
+    </button>
+    </div>
+
+    <div *ngIf="submitted">
+        <h2>Result</h2>
+        <div class="item" *ngFor="let result of results">
+            <div>
+                <span class="item-number">{{result.number+1}}.)
+                    <span *ngIf="result.addtop + result.addbot != result.answer" class="wrong">Wrong. The correct answer is <span class="correct">{{result.addtop + result.addbot}}</span></span>
+                    <span *ngIf="result.addtop + result.addbot == result.answer" class="correct">Correct</span>    
+                </span>   
+                <div class="problem">
+                    <span class="topItem">{{result.addtop}}</span>
+                    <span class="operator">+</span>
+                    <span class="botItem">{{result.addbot}}</span>                
+                </div>
+                <span class="math-answer">{{result.answer}}</span>       
+            </div>    
+        </div>
+        <button class="try-again" [routerLink]="['/math']"> Try again</button>
+    </div>
+</div>
+

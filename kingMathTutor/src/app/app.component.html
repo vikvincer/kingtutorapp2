@@ -1,0 +1,22 @@
+<div> 
+<header>
+  <div id="nav-icon3" (click)="toogleOpen()" [(className)]="myClass">
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+  <h1>King Tutor App</h1>
+</header>
+<div [@navTrigger]="navState" class="nav-container">
+  <app-nav ></app-nav>
+</div>
+<div class="body-container">
+  <router-outlet></router-outlet>
+</div>
+
+
+
+
+
+</div>
